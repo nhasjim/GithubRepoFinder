@@ -10,8 +10,10 @@ import UIKit
 import MBProgressHUD
 
 // Main ViewController
-class RepoResultsViewController: UIViewController {
-
+class RepoResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var GHTableView: UITableView!
+    
     var searchBar: UISearchBar!
     var searchSettings = GithubRepoSearchSettings()
 
@@ -19,7 +21,10 @@ class RepoResultsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        GHTableView.delegate = self
+        GHTableView.dataSource = self
+        
         // Initialize the UISearchBar
         searchBar = UISearchBar()
         searchBar.delegate = self
@@ -32,6 +37,29 @@ class RepoResultsViewController: UIViewController {
         doSearch()
     }
 
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if repos != nil {
+            return repos!.count
+        }
+        else {
+            return 0
+        }
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = GHTableView.dequeueReusableCell(withIdentifier: "GHTableViewCell", for: indexPath) as! GHTableViewCell
+        
+        cell.nameLabel.text = repos[indexPath.row].name
+        cell.ownerLabel.text = repos[indexPath.row].ownerHandle
+        cell.starsLabel.text = "\(repos[indexPath.row].stars)"
+        cell.forksLabel.text = "\(repos[indexPath.row].forks)"
+        cell.descriptionLabel.text = repos[indexPath.row].desc
+        let imageRequest = URL(string: repos[indexPath.row].ownerAvatarURL!)
+        cell.avatarImage.setImageWith(imageRequest!)
+        
+        return cell
+    }
+    
     // Perform the search.
     fileprivate func doSearch() {
 
@@ -40,14 +68,17 @@ class RepoResultsViewController: UIViewController {
         // Perform request to GitHub API to get the list of repositories
         GithubRepo.fetchRepos(searchSettings, successCallback: { (newRepos) -> Void in
 
+            self.repos = newRepos
+            
             // Print the returned repositories to the output window
             for repo in newRepos {
                 print(repo)
-            }   
+            }
+            self.GHTableView.reloadData()
 
             MBProgressHUD.hide(for: self.view, animated: true)
             }, error: { (error) -> Void in
-                print(error)
+                print(error!)
         })
     }
 }
