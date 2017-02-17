@@ -56,6 +56,8 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
         cell.descriptionLabel.text = repos[indexPath.row].desc
         let imageRequest = URL(string: repos[indexPath.row].ownerAvatarURL!)
         cell.avatarImage.setImageWith(imageRequest!)
+        cell.starsIcon.image = UIImage(named: "star")
+        cell.forksIcon.image = UIImage(named: "fork")
         
         return cell
     }
