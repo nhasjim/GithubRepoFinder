@@ -51,8 +51,8 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
         
         cell.nameLabel.text = repos[indexPath.row].name
         cell.ownerLabel.text = repos[indexPath.row].ownerHandle
-        cell.starsLabel.text = "\(repos[indexPath.row].stars)"
-        cell.forksLabel.text = "\(repos[indexPath.row].forks)"
+        cell.starsLabel.text = "\(repos[indexPath.row].stars!)"
+        cell.forksLabel.text = "\(repos[indexPath.row].forks!)"
         cell.descriptionLabel.text = repos[indexPath.row].desc
         let imageRequest = URL(string: repos[indexPath.row].ownerAvatarURL!)
         cell.avatarImage.setImageWith(imageRequest!)
@@ -73,9 +73,7 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
             self.repos = newRepos
             
             // Print the returned repositories to the output window
-            for repo in newRepos {
-                print(repo)
-            }
+
             self.GHTableView.reloadData()
 
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -83,6 +81,23 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
                 print(error!)
         })
     }
+    
+
+    
+//    //================== COME BACK FROM COMPOSE TWEET!!
+//    @IBAction func prepare(forUnwind segue: UIStoryboardSegue) {
+//        
+//    }
+    
+    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let navController = segue.destination as! UINavigationController
+        let vc = navController.topViewController as! SettingsViewController
+        vc.settings = searchSettings
+        vc.settingsDelegate = self
+        // ... Search Settings ...
+    }
+    
+    
 }
 
 // SearchBar methods
@@ -107,5 +122,18 @@ extension RepoResultsViewController: UISearchBarDelegate {
         searchSettings.searchString = searchBar.text
         searchBar.resignFirstResponder()
         doSearch()
+    }
+}
+
+extension RepoResultsViewController: SettingsPresentingViewControllerDelegate{
+    func didSaveSettings(settings: GithubRepoSearchSettings) {
+        searchSettings.minStars = settings.minStars
+        print("HELLO")
+        doSearch()
+        
+    }
+    
+    func didCancelSettings() {
+        
     }
 }

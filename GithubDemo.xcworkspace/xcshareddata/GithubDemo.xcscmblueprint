@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "58F9182D40E0EAC7E3E516CBD38575F2FE648F0A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "58F9182D40E0EAC7E3E516CBD38575F2FE648F0A" : 9223372036854775807,
+    "2C3750093DA91A6E0E9959E73537F69CDEBC48E0" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "71AB2FE4-998F-4A00-BBFC-5BDAD39C6015",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "58F9182D40E0EAC7E3E516CBD38575F2FE648F0A" : "GithubRepoFinder\/",
+    "2C3750093DA91A6E0E9959E73537F69CDEBC48E0" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GithubDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "GithubDemo.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TutorU\/TutorU.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2C3750093DA91A6E0E9959E73537F69CDEBC48E0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nhasjim\/GithubRepoFinder.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "58F9182D40E0EAC7E3E516CBD38575F2FE648F0A"
+    }
+  ]
+}
